@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://ic4a2kj2jn0y"]
+
+[ext_resource type="Script" uid="uid://etrv704t5l8p" path="res://main_menu.gd" id="1_06t4h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1574"]
+bg_color = Color(0.11063769, 0.20989299, 0.23281875, 1)
+
+[node name="MainMenu" type="Control" unique_id=976484588]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="Panel" type="Panel" parent="." unique_id=345146685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1574")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1559714795]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.125
+offset_top = -97.75
+offset_right = 187.125
+offset_bottom = 97.75
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 2
+
+[node name="Choose Name" type="LineEdit" parent="TabContainer" unique_id=1250436815]
+visible = false
+layout_mode = 2
+placeholder_text = "Choose Name"
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="Settings" type="VBoxContainer" parent="TabContainer" unique_id=1703987541]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="RandomName" type="CheckButton" parent="TabContainer/Settings" unique_id=1286757336]
+layout_mode = 2
+text = "Random Name"
+
+[node name="HeadStart" type="CheckButton" parent="TabContainer/Settings" unique_id=811558939]
+layout_mode = 2
+text = "Head Start Mode"
+
+[node name="Secret" type="CheckButton" parent="TabContainer/Settings" unique_id=1804737825]
+layout_mode = 2
+text = "Secret Mode"
+
+[node name="Start Game" type="VBoxContainer" parent="TabContainer" unique_id=419269703]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Load Game" type="Button" parent="TabContainer/Start Game" unique_id=1719400878]
+layout_mode = 2
+text = "Continue"
+icon_alignment = 1
+
+[node name="NewGame" type="Button" parent="TabContainer/Start Game" unique_id=1487872953]
+layout_mode = 2
+text = "New Save"
+
+[connection signal="text_submitted" from="TabContainer/Choose Name" to="." method="_on_choose_name_text_submitted"]
+[connection signal="toggled" from="TabContainer/Settings/RandomName" to="." method="_on_random_name_toggled"]
+[connection signal="pressed" from="TabContainer/Start Game/Load Game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="TabContainer/Start Game/NewGame" to="." method="_on_new_game_pressed"]
